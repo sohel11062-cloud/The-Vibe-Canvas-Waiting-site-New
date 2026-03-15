@@ -7,17 +7,24 @@ const revealItems = document.querySelectorAll(".reveal");
 const parallaxItems = document.querySelectorAll("[data-depth]");
 const tiltCard = document.querySelector(".tilt");
 const magnets = document.querySelectorAll(".magnetic");
-const waitlistForm = document.getElementById("waitlist-form");
-const emailInput = document.getElementById("email");
-const formMessage = document.getElementById("form-message");
-const successBurst = document.getElementById("success-burst");
 const scrollButtons = document.querySelectorAll("[data-scroll]");
 const topbar = document.querySelector(".topbar");
 const sections = document.querySelectorAll("main section");
+const countdownTargets = {
+  days: document.getElementById("days"),
+  hours: document.getElementById("hours"),
+  minutes: document.getElementById("minutes"),
+  seconds: document.getElementById("seconds"),
+  daysSecondary: document.getElementById("days-secondary"),
+  hoursSecondary: document.getElementById("hours-secondary"),
+  minutesSecondary: document.getElementById("minutes-secondary"),
+  secondsSecondary: document.getElementById("seconds-secondary")
+};
 
 body.classList.add("is-loading");
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isCompactDevice = window.matchMedia("(max-width: 900px)").matches;
 
 const state = {
   width: window.innerWidth,
@@ -25,19 +32,20 @@ const state = {
   pointerX: window.innerWidth * 0.5,
   pointerY: window.innerHeight * 0.5,
   scrollY: 0,
-  scrollProgress: 0
+  scrollProgress: 0,
+  sceneVisible: true
 };
 
 const particles = [];
-let particleCount = Math.min(120, Math.round((window.innerWidth * window.innerHeight) / 18000));
+let particleCount = Math.min(isCompactDevice ? 44 : 76, Math.round((window.innerWidth * window.innerHeight) / 26000));
 let webgl = null;
 
 function resizeCanvas() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   state.width = window.innerWidth;
   state.height = window.innerHeight;
   state.scrollProgress = window.scrollY / Math.max(document.body.scrollHeight - window.innerHeight, 1);
-  particleCount = Math.min(120, Math.round((window.innerWidth * window.innerHeight) / 18000));
+  particleCount = Math.min(window.innerWidth < 900 ? 44 : 76, Math.round((window.innerWidth * window.innerHeight) / 26000));
   canvas.width = state.width * dpr;
   canvas.height = state.height * dpr;
   canvas.style.width = `${state.width}px`;
@@ -50,11 +58,11 @@ function createParticle() {
     x: Math.random() * state.width,
     y: Math.random() * state.height,
     z: Math.random() * 0.8 + 0.2,
-    size: Math.random() * 2.2 + 0.5,
-    speedX: (Math.random() - 0.5) * 0.24,
-    speedY: Math.random() * 0.32 + 0.12,
-    hue: Math.random() > 0.5 ? 190 : 275,
-    alpha: Math.random() * 0.5 + 0.15
+    size: Math.random() * 1.6 + 0.5,
+    speedX: (Math.random() - 0.5) * 0.14,
+    speedY: Math.random() * 0.16 + 0.08,
+    hue: Math.random() > 0.5 ? 190 : 315,
+    alpha: Math.random() * 0.36 + 0.1
   };
 }
 
@@ -76,31 +84,31 @@ function drawParticles() {
     state.pointerY,
     Math.max(state.width, state.height) * 0.5
   );
-  gradient.addColorStop(0, "rgba(119, 248, 255, 0.09)");
-  gradient.addColorStop(0.35, "rgba(176, 66, 255, 0.06)");
+  gradient.addColorStop(0, "rgba(244, 214, 194, 0.05)");
+  gradient.addColorStop(0.35, "rgba(176, 66, 255, 0.05)");
   gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, state.width, state.height);
 
   for (const particle of particles) {
-    particle.x += particle.speedX + (state.pointerX - state.width / 2) * 0.00002 * particle.z;
-    particle.y += particle.speedY * particle.z + state.scrollY * 0.00015;
+    particle.x += particle.speedX + (state.pointerX - state.width / 2) * 0.00001 * particle.z;
+    particle.y += particle.speedY * particle.z + state.scrollY * 0.00005;
 
-    if (particle.y > state.height + 40) {
-      particle.y = -20;
+    if (particle.y > state.height + 30) {
+      particle.y = -10;
       particle.x = Math.random() * state.width;
     }
 
-    if (particle.x > state.width + 30) {
-      particle.x = -30;
-    } else if (particle.x < -30) {
-      particle.x = state.width + 30;
+    if (particle.x > state.width + 20) {
+      particle.x = -20;
+    } else if (particle.x < -20) {
+      particle.x = state.width + 20;
     }
 
     ctx.beginPath();
-    ctx.fillStyle = `hsla(${particle.hue}, 100%, 70%, ${particle.alpha})`;
-    ctx.shadowBlur = 18;
-    ctx.shadowColor = `hsla(${particle.hue}, 100%, 70%, 0.45)`;
+    ctx.fillStyle = `hsla(${particle.hue}, 100%, 78%, ${particle.alpha})`;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = `hsla(${particle.hue}, 100%, 70%, 0.24)`;
     ctx.arc(particle.x, particle.y, particle.size * particle.z, 0, Math.PI * 2);
     ctx.fill();
   }
@@ -109,16 +117,20 @@ function drawParticles() {
 }
 
 function createWebGLScene() {
-  if (!window.THREE || !webglStage || prefersReducedMotion) {
+  if (!window.THREE || !webglStage || prefersReducedMotion || window.innerWidth < 680) {
     return null;
   }
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
-  camera.position.set(0, 0, 8);
+  camera.position.set(0, 0, 7.4);
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  const renderer = new THREE.WebGLRenderer({
+    antialias: !isCompactDevice,
+    alpha: true,
+    powerPreference: "high-performance"
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.setSize(webglStage.clientWidth, webglStage.clientHeight);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   webglStage.appendChild(renderer.domElement);
@@ -126,71 +138,58 @@ function createWebGLScene() {
   const group = new THREE.Group();
   scene.add(group);
 
-  const ambient = new THREE.AmbientLight(0x88aaff, 1.1);
-  scene.add(ambient);
+  scene.add(new THREE.AmbientLight(0x8899ff, 1.1));
 
-  const pointA = new THREE.PointLight(0x77f8ff, 3.2, 30);
+  const pointA = new THREE.PointLight(0x77f8ff, 2.5, 24);
   pointA.position.set(5, 4, 6);
   scene.add(pointA);
 
-  const pointB = new THREE.PointLight(0xb042ff, 3.6, 32);
-  pointB.position.set(-5, -2, 7);
+  const pointB = new THREE.PointLight(0xff58d0, 2.6, 24);
+  pointB.position.set(-5, -2, 6);
   scene.add(pointB);
 
-  const pointC = new THREE.PointLight(0xff58d0, 2.2, 26);
-  pointC.position.set(0, 6, -2);
-  scene.add(pointC);
-
-  const coreGeometry = new THREE.IcosahedronGeometry(1.55, 32);
-  const coreMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0xa9d7ff,
-    emissive: 0x36174a,
-    emissiveIntensity: 0.8,
-    roughness: 0.12,
-    metalness: 0.35,
-    transmission: 0.18,
-    transparent: true,
-    opacity: 0.92,
-    clearcoat: 1,
-    clearcoatRoughness: 0.2
-  });
-  const core = new THREE.Mesh(coreGeometry, coreMaterial);
+  const core = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(1.45, 16),
+    new THREE.MeshPhysicalMaterial({
+      color: 0xf1d9cb,
+      emissive: 0x281435,
+      emissiveIntensity: 0.7,
+      roughness: 0.2,
+      metalness: 0.25,
+      transmission: 0.14,
+      transparent: true,
+      opacity: 0.92,
+      clearcoat: 1
+    })
+  );
   group.add(core);
 
   const wire = new THREE.Mesh(
-    new THREE.TorusKnotGeometry(2.1, 0.11, 260, 22, 2, 3),
+    new THREE.TorusKnotGeometry(1.95, 0.1, 140, 18, 2, 3),
     new THREE.MeshBasicMaterial({
       color: 0x77f8ff,
       transparent: true,
-      opacity: 0.34,
+      opacity: 0.24,
       wireframe: true
     })
   );
   group.add(wire);
 
-  const ringA = new THREE.Mesh(
-    new THREE.TorusGeometry(2.8, 0.04, 16, 180),
-    new THREE.MeshBasicMaterial({ color: 0x77f8ff, transparent: true, opacity: 0.3 })
+  const ring = new THREE.Mesh(
+    new THREE.TorusGeometry(2.5, 0.03, 12, 120),
+    new THREE.MeshBasicMaterial({ color: 0xb042ff, transparent: true, opacity: 0.3 })
   );
-  ringA.rotation.x = Math.PI / 2.6;
-  group.add(ringA);
+  ring.rotation.x = Math.PI / 2.6;
+  group.add(ring);
 
-  const ringB = new THREE.Mesh(
-    new THREE.TorusGeometry(2.2, 0.03, 16, 180),
-    new THREE.MeshBasicMaterial({ color: 0xb042ff, transparent: true, opacity: 0.36 })
-  );
-  ringB.rotation.y = Math.PI / 3.1;
-  ringB.rotation.x = Math.PI / 4.2;
-  group.add(ringB);
-
-  const count = 1200;
+  const count = isCompactDevice ? 320 : 520;
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
   const colorA = new THREE.Color(0x77f8ff);
-  const colorB = new THREE.Color(0xb042ff);
+  const colorB = new THREE.Color(0xff58d0);
 
   for (let i = 0; i < count; i += 1) {
-    const radius = 2.8 + Math.random() * 1.7;
+    const radius = 2.5 + Math.random() * 1.2;
     const theta = Math.random() * Math.PI * 2;
     const phi = Math.acos(2 * Math.random() - 1);
     const index = i * 3;
@@ -209,29 +208,20 @@ function createWebGLScene() {
   particlesGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   particlesGeometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
-  const pointsMaterial = new THREE.PointsMaterial({
-    size: 0.045,
-    vertexColors: true,
-    transparent: true,
-    opacity: 0.82,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false
-  });
-  const starfield = new THREE.Points(particlesGeometry, pointsMaterial);
-  group.add(starfield);
-
-  const haze = new THREE.Mesh(
-    new THREE.SphereGeometry(3.5, 48, 48),
-    new THREE.MeshBasicMaterial({
-      color: 0x4f7cff,
+  const starfield = new THREE.Points(
+    particlesGeometry,
+    new THREE.PointsMaterial({
+      size: 0.038,
+      vertexColors: true,
       transparent: true,
-      opacity: 0.06,
-      side: THREE.BackSide
+      opacity: 0.72,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
     })
   );
-  group.add(haze);
+  group.add(starfield);
 
-  return { scene, camera, renderer, group, core, wire, ringA, ringB, starfield };
+  return { scene, camera, renderer, group, core, wire, ring, starfield };
 }
 
 function resizeWebGL() {
@@ -247,7 +237,7 @@ function resizeWebGL() {
 }
 
 function animateWebGL(time) {
-  if (!webgl || prefersReducedMotion) {
+  if (!webgl || !state.sceneVisible) {
     return;
   }
 
@@ -256,23 +246,21 @@ function animateWebGL(time) {
   const pointerY = (state.pointerY / state.height - 0.5) * 2;
   const scrollFactor = state.scrollProgress;
 
-  webgl.group.rotation.y += 0.0028;
-  webgl.group.rotation.x = Math.sin(t * 1.4) * 0.14 + pointerY * 0.18;
-  webgl.group.position.y = Math.sin(t * 2.1) * 0.16 - scrollFactor * 0.6;
+  webgl.group.rotation.y += 0.0018;
+  webgl.group.rotation.x = Math.sin(t * 1.4) * 0.1 + pointerY * 0.12;
+  webgl.group.position.y = Math.sin(t * 2.1) * 0.1 - scrollFactor * 0.35;
 
-  webgl.core.rotation.x += 0.004;
-  webgl.core.rotation.y += 0.0055;
-  webgl.core.scale.setScalar(1 + Math.sin(t * 3.4) * 0.045);
+  webgl.core.rotation.x += 0.003;
+  webgl.core.rotation.y += 0.004;
+  webgl.core.scale.setScalar(1 + Math.sin(t * 3.2) * 0.03);
 
-  webgl.wire.rotation.x -= 0.0044;
-  webgl.wire.rotation.y += 0.0031;
-  webgl.ringA.rotation.z += 0.005;
-  webgl.ringB.rotation.x -= 0.004;
-  webgl.starfield.rotation.y -= 0.0016;
-  webgl.starfield.rotation.x = t * 0.06 + pointerY * 0.1;
+  webgl.wire.rotation.x -= 0.0024;
+  webgl.wire.rotation.y += 0.002;
+  webgl.ring.rotation.z += 0.0032;
+  webgl.starfield.rotation.y -= 0.0009;
 
-  webgl.camera.position.x += (pointerX * 0.85 - webgl.camera.position.x) * 0.04;
-  webgl.camera.position.y += ((-pointerY * 0.65) - webgl.camera.position.y) * 0.04;
+  webgl.camera.position.x += (pointerX * 0.45 - webgl.camera.position.x) * 0.04;
+  webgl.camera.position.y += ((-pointerY * 0.36) - webgl.camera.position.y) * 0.04;
   webgl.camera.lookAt(0, 0, 0);
 
   webgl.renderer.render(webgl.scene, webgl.camera);
@@ -295,12 +283,12 @@ function handleReveal() {
       }
     });
   }, {
-    threshold: 0.18,
+    threshold: 0.14,
     rootMargin: "0px 0px -10% 0px"
   });
 
   revealItems.forEach((item, index) => {
-    item.style.transitionDelay = `${Math.min(index * 70, 320)}ms`;
+    item.style.transitionDelay = `${Math.min(index * 55, 260)}ms`;
     observer.observe(item);
   });
 }
@@ -312,8 +300,8 @@ function updateParallax() {
 
   parallaxItems.forEach((item) => {
     const depth = Number(item.dataset.depth || 0);
-    const offsetX = (state.pointerX - state.width / 2) * depth * 0.06;
-    const offsetY = (state.pointerY - state.height / 2) * depth * 0.05 + state.scrollY * depth * -0.04;
+    const offsetX = (state.pointerX - state.width / 2) * depth * 0.04;
+    const offsetY = (state.pointerY - state.height / 2) * depth * 0.03 + state.scrollY * depth * -0.02;
     item.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`;
   });
 }
@@ -330,17 +318,17 @@ function updateSectionAtmosphere() {
     }
   });
 
-  const hue = 220 + activeIndex * 18;
-  const glow = 260 + activeIndex * 12;
+  const pink = 306 + activeIndex * 3;
+  const blue = 224 + activeIndex * 6;
   body.style.background = `
-    radial-gradient(circle at 20% 20%, hsla(${glow}, 100%, 62%, 0.18), transparent 30%),
-    radial-gradient(circle at 80% 20%, hsla(${hue}, 100%, 64%, 0.20), transparent 28%),
-    radial-gradient(circle at 50% 80%, rgba(119, 248, 255, 0.12), transparent 34%),
+    radial-gradient(circle at 20% 20%, hsla(${pink}, 100%, 62%, 0.16), transparent 30%),
+    radial-gradient(circle at 80% 18%, hsla(${blue}, 100%, 64%, 0.16), transparent 28%),
+    radial-gradient(circle at 50% 80%, rgba(119, 248, 255, 0.08), transparent 34%),
     linear-gradient(180deg, #03040b 0%, #050814 38%, #070c1d 100%)
   `;
 
   if (topbar) {
-    topbar.style.background = `linear-gradient(180deg, rgba(6, 10, 24, ${0.22 + activeIndex * 0.02}), rgba(6, 10, 24, 0.05))`;
+    topbar.style.background = `linear-gradient(180deg, rgba(6, 10, 24, ${0.16 + activeIndex * 0.02}), rgba(6, 10, 24, 0.04))`;
   }
 }
 
@@ -353,9 +341,9 @@ function bindTilt() {
     const rect = tiltCard.getBoundingClientRect();
     const px = (event.clientX - rect.left) / rect.width;
     const py = (event.clientY - rect.top) / rect.height;
-    const rotateY = (px - 0.5) * 12;
-    const rotateX = (0.5 - py) * 10;
-    tiltCard.style.transform = `perspective(1100px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+    const rotateY = (px - 0.5) * 9;
+    const rotateX = (0.5 - py) * 7;
+    tiltCard.style.transform = `perspective(1100px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
   });
 
   tiltCard.addEventListener("pointerleave", () => {
@@ -373,45 +361,12 @@ function bindMagneticButtons() {
       const rect = item.getBoundingClientRect();
       const dx = event.clientX - (rect.left + rect.width / 2);
       const dy = event.clientY - (rect.top + rect.height / 2);
-      item.style.transform = `translate(${dx * 0.08}px, ${dy * 0.08}px)`;
+      item.style.transform = `translate(${dx * 0.06}px, ${dy * 0.06}px)`;
     });
 
     item.addEventListener("pointerleave", () => {
       item.style.transform = "";
     });
-  });
-}
-
-function triggerBurst() {
-  successBurst.classList.remove("is-active");
-  void successBurst.offsetWidth;
-  successBurst.classList.add("is-active");
-}
-
-function validateEmail(value) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
-
-function bindForm() {
-  if (!waitlistForm) {
-    return;
-  }
-
-  waitlistForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const email = emailInput.value.trim();
-
-    if (!validateEmail(email)) {
-      waitlistForm.classList.remove("is-success");
-      formMessage.textContent = "Enter a valid email to unlock early access.";
-      emailInput.focus();
-      return;
-    }
-
-    waitlistForm.classList.add("is-success");
-    formMessage.textContent = "You're in. Watch your inbox for first access.";
-    emailInput.value = "";
-    triggerBurst();
   });
 }
 
@@ -427,11 +382,38 @@ function bindScrollButtons() {
   });
 }
 
+function updateCountdown() {
+  const launchDate = new Date("2026-05-01T06:30:00Z").getTime();
+  const now = Date.now();
+  const distance = Math.max(0, launchDate - now);
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
+
+  const values = {
+    days: String(days).padStart(2, "0"),
+    hours: String(hours).padStart(2, "0"),
+    minutes: String(minutes).padStart(2, "0"),
+    seconds: String(seconds).padStart(2, "0")
+  };
+
+  countdownTargets.days.textContent = values.days;
+  countdownTargets.hours.textContent = values.hours;
+  countdownTargets.minutes.textContent = values.minutes;
+  countdownTargets.seconds.textContent = values.seconds;
+  countdownTargets.daysSecondary.textContent = values.days;
+  countdownTargets.hoursSecondary.textContent = values.hours;
+  countdownTargets.minutesSecondary.textContent = values.minutes;
+  countdownTargets.secondsSecondary.textContent = values.seconds;
+}
+
 function hideLoader() {
   window.setTimeout(() => {
     loader.classList.add("is-hidden");
     body.classList.remove("is-loading");
-  }, prefersReducedMotion ? 300 : 2600);
+  }, prefersReducedMotion ? 300 : 2200);
 }
 
 function onPointerMove(event) {
@@ -457,16 +439,22 @@ if (webgl) {
 handleReveal();
 bindTilt();
 bindMagneticButtons();
-bindForm();
 bindScrollButtons();
-hideLoader();
 updateSectionAtmosphere();
+updateCountdown();
+hideLoader();
 
 if (prefersReducedMotion) {
   drawParticles();
 } else {
   animate();
 }
+
+window.setInterval(updateCountdown, 1000);
+
+document.addEventListener("visibilitychange", () => {
+  state.sceneVisible = !document.hidden;
+});
 
 window.addEventListener("resize", () => {
   resizeCanvas();
