@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Vibe Canvas | Early Access</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+/* HERO SECTION */
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:radial-gradient(circle at center,#0f0f0f,#050505);
+}
+
+.hero h1{
+font-size:72px;
+letter-spacing:6px;
+text-shadow:0 0 25px #9333ea;
+}
+
+.subtitle{
+font-size:22px;
+margin-top:10px;
+opacity:0.85;
+}
+
+.launch{
+margin-top:8px;
+color:#22d3ee;
+}
+
+.cta{
+margin-top:30px;
+padding:16px 36px;
+background:#9333ea;
+border:none;
+border-radius:40px;
+font-size:18px;
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px #9333ea;
+transition:0.3s;
+}
+
+.cta:hover{
+transform:scale(1.05);
+box-shadow:0 0 40px #9333ea;
+}
+
+/* COUNTDOWN */
+
+.countdown{
+margin-top:30px;
+font-size:28px;
+color:#22d3ee;
+}
+
+/* WAITLIST */
+
+.waitlist{
+padding:80px 20px;
+text-align:center;
+}
+
+.waitlist h2{
+font-size:40px;
+margin-bottom:30px;
+}
+
+form{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+input, textarea{
+
+width:320px;
+padding:14px;
+margin:10px 0;
+border-radius:10px;
+border:none;
+background:#111;
+color:white;
+font-size:14px;
+
+}
+
+textarea{
+height:90px;
+}
+
+.submit-btn{
+
+margin-top:10px;
+padding:14px 30px;
+border:none;
+border-radius:30px;
+background:#9333ea;
+color:white;
+font-size:16px;
+cursor:pointer;
+box-shadow:0 0 15px #9333ea;
+transition:0.3s;
+
+}
+
+.submit-btn:hover{
+
+transform:scale(1.05);
+box-shadow:0 0 30px #9333ea;
+
+}
+
+/* FOOTER */
+
+.footer{
+
+padding:40px;
+text-align:center;
+font-size:14px;
+opacity:0.6;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<section class="hero">
+
+<h1>THE VIBE CANVAS</h1>
+
+<div class="subtitle">
+Streetwear for the energy you carry
+</div>
+
+<div class="launch">
+Official Launch — May 1
+</div>
+
+<button class="cta" onclick="scrollToForm()">
+Join Early Access
+</button>
+
+<div class="countdown" id="countdown"></div>
+
+</section>
+
+
+<section class="waitlist" id="waitlist">
+
+<h2>Join the Waitlist</h2>
+
+<form>
+
+<input type="text" placeholder="Name" required>
+
+<input type="email" placeholder="Email" required>
+
+<input type="tel" placeholder="Mobile Number" required>
+
+<textarea placeholder="Tell us your vibe (optional)"></textarea>
+
+<button class="submit-btn">
+Secure My Spot
+</button>
+
+</form>
+
+</section>
+
+<div class="footer">
+
+© 2026 The Vibe Canvas
+
+</div>
+
+
+<script>
+
+function scrollToForm(){
+document.getElementById("waitlist").scrollIntoView({behavior:"smooth"});
+}
+
+const launchDate = new Date("May 1, 2026 00:00:00").getTime();
+
+const timer = setInterval(function(){
+
+const now = new Date().getTime();
+
+const distance = launchDate - now;
+
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+
+document.getElementById("countdown").innerHTML =
+days + " days  " + hours + " hours  " + minutes + " minutes";
+
+},1000);
+
+</script>
+
+</body>
+</html>
