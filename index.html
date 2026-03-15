@@ -1,230 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>The Vibe Canvas | Early Access</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-font-family:Arial, Helvetica, sans-serif;
-background:#050505;
-color:white;
-overflow-x:hidden;
-}
-
-/* HERO SECTION */
-
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:radial-gradient(circle at center,#0f0f0f,#050505);
-}
-
-.hero h1{
-font-size:72px;
-letter-spacing:6px;
-text-shadow:0 0 25px #9333ea;
-}
-
-.subtitle{
-font-size:22px;
-margin-top:10px;
-opacity:0.85;
-}
-
-.launch{
-margin-top:8px;
-color:#22d3ee;
-}
-
-.cta{
-margin-top:30px;
-padding:16px 36px;
-background:#9333ea;
-border:none;
-border-radius:40px;
-font-size:18px;
-color:white;
-cursor:pointer;
-box-shadow:0 0 20px #9333ea;
-transition:0.3s;
-}
-
-.cta:hover{
-transform:scale(1.05);
-box-shadow:0 0 40px #9333ea;
-}
-
-/* COUNTDOWN */
-
-.countdown{
-margin-top:30px;
-font-size:28px;
-color:#22d3ee;
-}
-
-/* WAITLIST */
-
-.waitlist{
-padding:80px 20px;
-text-align:center;
-}
-
-.waitlist h2{
-font-size:40px;
-margin-bottom:30px;
-}
-
-form{
-display:flex;
-flex-direction:column;
-align-items:center;
-}
-
-input, textarea{
-
-width:320px;
-padding:14px;
-margin:10px 0;
-border-radius:10px;
-border:none;
-background:#111;
-color:white;
-font-size:14px;
-
-}
-
-textarea{
-height:90px;
-}
-
-.submit-btn{
-
-margin-top:10px;
-padding:14px 30px;
-border:none;
-border-radius:30px;
-background:#9333ea;
-color:white;
-font-size:16px;
-cursor:pointer;
-box-shadow:0 0 15px #9333ea;
-transition:0.3s;
-
-}
-
-.submit-btn:hover{
-
-transform:scale(1.05);
-box-shadow:0 0 30px #9333ea;
-
-}
-
-/* FOOTER */
-
-.footer{
-
-padding:40px;
-text-align:center;
-font-size:14px;
-opacity:0.6;
-
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Vibe Canvas | Level Up Your Fit</title>
+  <meta name="description" content="The Vibe Canvas is a futuristic fashion label where code meets culture. Join the waitlist and step into the next wave.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+  <div class="cinematic-vignette"></div>
+  <div class="light-sweep"></div>
+  <div class="noise"></div>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-<section class="hero">
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__core"></div>
+    <div class="loader__rings">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="loader__text-wrap">
+      <p class="loader__eyebrow">Loading the future</p>
+      <h1 class="loader__title">The Vibe Canvas</h1>
+    </div>
+  </div>
 
-<h1>THE VIBE CANVAS</h1>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <span class="brand-lockup__name">THE VIBE CANVAS</span>
+        <span class="brand-lockup__tag">LEVEL UP YOUR FIT</span>
+      </div>
+      <a class="topbar__cta" href="#waitlist">Join Waitlist</a>
+    </header>
 
-<div class="subtitle">
-Streetwear for the energy you carry
-</div>
+    <main>
+      <section class="hero section">
+        <div class="hero__aura hero__aura--one"></div>
+        <div class="hero__aura hero__aura--two"></div>
+        <div class="hero__grid"></div>
 
-<div class="launch">
-Official Launch — May 1
-</div>
+        <div class="hero__content" data-depth="0.16">
+          <p class="eyebrow reveal">Futuristic fashion label</p>
+          <h2 class="hero__title reveal">
+            <span>LEVEL UP</span>
+            <span>YOUR FIT</span>
+          </h2>
+          <p class="hero__copy reveal">Where code meets culture.</p>
+          <div class="hero__actions reveal">
+            <a class="button button--primary magnetic" href="#waitlist">Join the Waitlist</a>
+            <button class="button button--ghost magnetic" type="button" data-scroll="#story">Enter the vibe</button>
+          </div>
+        </div>
 
-<button class="cta" onclick="scrollToForm()">
-Join Early Access
-</button>
+        <div class="hero__visual" data-depth="0.1">
+          <div class="orb-scene">
+            <div id="webgl-stage" class="webgl-stage" aria-hidden="true"></div>
+            <div class="orb-scene__halo"></div>
+            <div class="orb-scene__halo orb-scene__halo--inner"></div>
+            <div class="orb-scene__scanline"></div>
+            <div class="floating-card floating-card--top glass reveal">
+              <span>Drop 01</span>
+              <strong>Neon-tailored streetcode</strong>
+            </div>
+            <div class="floating-card floating-card--bottom glass reveal">
+              <span>Access</span>
+              <strong>Private waitlist now open</strong>
+            </div>
+          </div>
+        </div>
 
-<div class="countdown" id="countdown"></div>
+        <div class="hero__marquee">
+          <span>Code &times; Culture</span>
+          <span>Streetwear Energy</span>
+          <span>Digital Craft</span>
+          <span>Future Memory</span>
+        </div>
+      </section>
 
-</section>
+      <section class="visual section" id="visual">
+        <div class="section-head reveal">
+          <p class="eyebrow">Immersive visual system</p>
+          <h3>Luxury motion crafted like a digital runway.</h3>
+        </div>
 
+        <div class="visual__panel glass tilt reveal" data-depth="0.08">
+          <div class="visual__glow visual__glow--one"></div>
+          <div class="visual__glow visual__glow--two"></div>
+          <div class="visual__beam"></div>
+          <div class="visual__stack">
+            <div class="chip">Neon gradients</div>
+            <div class="chip">Reactive motion</div>
+            <div class="chip">Future-facing silhouettes</div>
+          </div>
+          <div class="visual__columns">
+            <article class="visual-card">
+              <span>01</span>
+              <h4>Holographic layers</h4>
+              <p>Chromatic surfaces, fluid glows, and premium cinematic spacing.</p>
+            </article>
+            <article class="visual-card">
+              <span>02</span>
+              <h4>Culture in motion</h4>
+              <p>Streetwear attitude fused with digital precision and next-wave identity.</p>
+            </article>
+            <article class="visual-card">
+              <span>03</span>
+              <h4>Built to be felt</h4>
+              <p>Every interaction pulls the visitor deeper into the brand universe.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-<section class="waitlist" id="waitlist">
+      <section class="story section" id="story">
+        <div class="story__copy glass reveal">
+          <p class="eyebrow">Brand story</p>
+          <h3>A new wave of fashion. Built for the culture. Designed for the future.</h3>
+          <p>
+            The Vibe Canvas imagines fashion as an interface: coded with intention, charged with street energy,
+            and designed for creators who move before the world catches up.
+          </p>
+        </div>
+        <div class="story__rail">
+          <div class="story__point reveal">
+            <span>01</span>
+            <strong>A new wave of fashion</strong>
+          </div>
+          <div class="story__point reveal">
+            <span>02</span>
+            <strong>Built for the culture</strong>
+          </div>
+          <div class="story__point reveal">
+            <span>03</span>
+            <strong>Designed for the future</strong>
+          </div>
+        </div>
+      </section>
 
-<h2>Join the Waitlist</h2>
+      <section class="hype section" id="hype">
+        <div class="hype__line reveal">
+          <span>THE FUTURE OF STREETWEAR</span>
+        </div>
+        <div class="hype__line reveal">
+          <span>CODE &times; CULTURE</span>
+        </div>
+        <div class="hype__line reveal">
+          <span>THE NEXT WAVE IS COMING</span>
+        </div>
+      </section>
 
-<form>
+      <section class="waitlist section" id="waitlist">
+        <div class="waitlist__intro reveal">
+          <p class="eyebrow">Exclusive access</p>
+          <h3>Secure your place before the drop goes live.</h3>
+          <p>Join the waitlist for early access, private updates, and first look privileges.</p>
+        </div>
 
-<input type="text" placeholder="Name" required>
+        <form class="waitlist__form glass reveal" id="waitlist-form" novalidate>
+          <label class="sr-only" for="email">Email address</label>
+          <div class="input-shell">
+            <input id="email" name="email" type="email" placeholder="Enter your email" autocomplete="email" required>
+            <span class="input-shell__glow"></span>
+          </div>
+          <button class="button button--primary magnetic" type="submit">Join the Waitlist</button>
+          <p class="form-note">No spam. Just signals from the future.</p>
+          <p class="form-message" id="form-message" aria-live="polite"></p>
+          <div class="success-burst" id="success-burst" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </form>
+      </section>
+    </main>
 
-<input type="email" placeholder="Email" required>
+    <footer class="footer">
+      <span>THE VIBE CANVAS</span>
+      <span>LEVEL UP YOUR FIT</span>
+    </footer>
+  </div>
 
-<input type="tel" placeholder="Mobile Number" required>
-
-<textarea placeholder="Tell us your vibe (optional)"></textarea>
-
-<button class="submit-btn">
-Secure My Spot
-</button>
-
-</form>
-
-</section>
-
-<div class="footer">
-
-© 2026 The Vibe Canvas
-
-</div>
-
-
-<script>
-
-function scrollToForm(){
-document.getElementById("waitlist").scrollIntoView({behavior:"smooth"});
-}
-
-const launchDate = new Date("May 1, 2026 00:00:00").getTime();
-
-const timer = setInterval(function(){
-
-const now = new Date().getTime();
-
-const distance = launchDate - now;
-
-const days = Math.floor(distance/(1000*60*60*24));
-const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-
-document.getElementById("countdown").innerHTML =
-days + " days  " + hours + " hours  " + minutes + " minutes";
-
-},1000);
-
-</script>
-
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
