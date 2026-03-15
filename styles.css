@@ -489,6 +489,7 @@ button {
 .runway-scene__wave,
 .runway-scene__crest {
   position: absolute;
+  pointer-events: none;
 }
 
 .runway-scene__glow {
@@ -607,6 +608,7 @@ button {
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
   animation: bob 5s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .floating-card span,
@@ -700,6 +702,7 @@ button {
   border-radius: 50%;
   filter: blur(20px);
   opacity: 0.42;
+  pointer-events: none;
 }
 
 .visual__glow--one {
@@ -727,6 +730,7 @@ button {
   transform: rotate(24deg);
   filter: blur(10px);
   animation: beam 7s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .visual__stack {
@@ -806,6 +810,7 @@ button {
   padding: 2rem;
   border-radius: var(--radius-lg);
   overflow: hidden;
+  isolation: isolate;
 }
 
 .waitlist__form::before {
@@ -818,6 +823,7 @@ button {
   mask-composite: exclude;
   padding: 1px;
   opacity: 0.9;
+  pointer-events: none;
 }
 
 .waitlist__countdown {
@@ -885,6 +891,8 @@ button {
 }
 
 .form-frame {
+  position: relative;
+  z-index: 2;
   overflow: hidden;
   border-radius: 22px;
   border: 1px solid rgba(123, 246, 255, 0.12);
@@ -898,6 +906,20 @@ button {
   min-height: 44rem;
   border: 0;
   background: transparent;
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+a,
+button,
+iframe,
+.topbar__cta,
+.button,
+.social-link {
+  position: relative;
+  z-index: 4;
+  pointer-events: auto;
 }
 
 .form-note {
@@ -937,6 +959,9 @@ button {
   background: linear-gradient(180deg, rgba(10, 14, 26, 0.82), rgba(7, 10, 18, 0.62));
   box-shadow: 0 0 20px rgba(123, 246, 255, 0.06);
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 .social-link:hover {
