@@ -121,7 +121,7 @@ function animate() {
 }
 
 function updateCountdown() {
-  const launchDate = new Date("2026-05-01T06:30:00Z").getTime();
+  const launchDate = new Date("2026-06-11T06:30:00Z").getTime();
   const now = Date.now();
   const distance = Math.max(0, launchDate - now);
 
