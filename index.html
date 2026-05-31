@@ -3,303 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Vibe Canvas - Level Up Your Fit</title>
-  <meta name="description" content="A futuristic fashion brand where code meets culture. Join the early access waitlist for The Vibe Canvas.">
-  <meta name="keywords" content="The Vibe Canvas, streetwear, futuristic fashion, luxury fashion, waitlist, clothing brand">
+  <title>The Vibe Canvas | Premium Streetwear Waitlist</title>
+  <meta name="description" content="Join The Vibe Canvas waitlist for premium apparel shaped by instinct, identity, discipline, technology, evolution, culture, community, and originality.">
+  <meta name="keywords" content="The Vibe Canvas, premium streetwear, luxury fashion, waitlist, culture ecosystem, original apparel">
   <meta name="author" content="The Vibe Canvas">
+  <meta name="theme-color" content="#050505">
+  <link rel="canonical" href="https://waitlist.thevibecanvas.in/">
+
   <meta property="og:type" content="website">
-  <meta property="og:title" content="The Vibe Canvas - Level Up Your Fit">
-  <meta property="og:description" content="A futuristic fashion brand where code meets culture. Join the early access waitlist for The Vibe Canvas.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80">
-  <meta property="og:url" content="https://thevibecanvas.in/">
+  <meta property="og:site_name" content="The Vibe Canvas">
+  <meta property="og:title" content="The Vibe Canvas | Premium Streetwear Waitlist">
+  <meta property="og:description" content="Premium apparel. Original concepts. A culture ecosystem built through The Grid.">
+  <meta property="og:image" content="https://waitlist.thevibecanvas.in/assets/share-card.webp">
+  <meta property="og:image:width" content="1672">
+  <meta property="og:image:height" content="941">
+  <meta property="og:url" content="https://waitlist.thevibecanvas.in/">
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The Vibe Canvas - Level Up Your Fit">
-  <meta name="twitter:description" content="A futuristic fashion brand where code meets culture. Join the early access waitlist for The Vibe Canvas.">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80">
+  <meta name="twitter:title" content="The Vibe Canvas | Premium Streetwear Waitlist">
+  <meta name="twitter:description" content="Premium apparel. Original concepts. A culture ecosystem built through The Grid.">
+  <meta name="twitter:image" content="https://waitlist.thevibecanvas.in/assets/share-card.webp">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/hero-campaign.webp" imagesrcset="assets/hero-campaign.webp 1671w" imagesizes="100vw">
+  <script>
+    try {
+      if (!localStorage.getItem("tvcIntroSeen")) {
+        document.documentElement.classList.add("intro-active");
+        localStorage.setItem("tvcIntroSeen", "true");
+      }
+    } catch (error) {
+      document.documentElement.classList.add("intro-active");
+    }
+  </script>
   <link rel="stylesheet" href="styles.css">
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebSite",
+      "@type": "Organization",
       "name": "The Vibe Canvas",
-      "url": "https://thevibecanvas.in/",
-      "description": "A futuristic fashion brand where code meets culture. Join the early access waitlist for The Vibe Canvas.",
-      "publisher": {
-        "@type": "Organization",
-        "name": "The Vibe Canvas"
+      "url": "https://waitlist.thevibecanvas.in/",
+      "logo": "https://waitlist.thevibecanvas.in/assets/the-vibe-canvas-logo.png",
+      "sameAs": [
+        "https://www.instagram.com/thevibecanvas.in",
+        "https://www.facebook.com/profile.php?id=61587367756185",
+        "https://www.threads.com/@thevibecanvas.in"
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "The Vibe Canvas Waitlist",
+      "url": "https://waitlist.thevibecanvas.in/",
+      "description": "A premium streetwear waitlist experience for The Vibe Canvas.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "The Vibe Canvas",
+        "url": "https://waitlist.thevibecanvas.in/"
       }
     }
   </script>
 </head>
 <body>
-  <div class="cinematic-vignette"></div>
-  <div class="light-sweep"></div>
-  <div class="noise"></div>
-  <div class="fabric-flow fabric-flow--left" aria-hidden="true"></div>
-  <div class="fabric-flow fabric-flow--right" aria-hidden="true"></div>
-  <canvas id="particle-canvas" aria-hidden="true"></canvas>
-
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader__core"></div>
-    <div class="loader__rings">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="loader__text-wrap">
-      <p class="loader__eyebrow">Loading the future</p>
-      <h1 class="loader__title">The Vibe Canvas</h1>
-    </div>
+  <div class="logo-intro" aria-hidden="true">
+    <div class="logo-intro__depth"></div>
+    <div class="logo-intro__light"></div>
+    <img src="assets/the-vibe-canvas-logo.png" alt="" width="1280" height="1280">
   </div>
+  <div class="site-grain" aria-hidden="true"></div>
+  <div class="site-vignette" aria-hidden="true"></div>
 
-  <div class="page-shell">
-    <header class="topbar">
-      <div class="brand-lockup">
-        <span class="brand-lockup__name">THE VIBE CANVAS</span>
-        <span class="brand-lockup__tag">LEVEL UP YOUR FIT</span>
+  <header class="topbar" data-theme="dark">
+    <a class="brand-mark" href="#top" aria-label="The Vibe Canvas home">
+      <img src="assets/the-vibe-canvas-logo.png" alt="The Vibe Canvas" width="1280" height="1280">
+    </a>
+    <a class="topbar__cta magnetic" href="#waitlist">Join Waitlist</a>
+  </header>
+
+  <main id="top">
+    <section class="chapter hero" aria-labelledby="hero-title">
+      <picture class="hero__media">
+        <img src="assets/hero-campaign.webp" alt="The Vibe Canvas campaign image in an architectural hall" width="1671" height="941" decoding="async" fetchpriority="high">
+      </picture>
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="hero__content reveal">
+        <img class="hero__logo" src="assets/the-vibe-canvas-logo.png" alt="The Vibe Canvas" width="1280" height="1280">
+        <h1 id="hero-title">The Vibe Canvas</h1>
+        <p class="hero__copy">Premium apparel shaped by instinct, identity, discipline, technology, evolution, culture, community, and originality.</p>
+        <div class="hero__actions">
+          <a class="button button--primary magnetic" href="#waitlist">Join The Waitlist</a>
+          <button class="button button--quiet magnetic" type="button" data-scroll="#identity">View The Brand</button>
+        </div>
       </div>
-      <a class="topbar__cta" href="#waitlist">Join Waitlist</a>
-    </header>
+      <div class="hero__chapter-note reveal" aria-label="Launch countdown">
+        <span>Official launch countdown</span>
+        <div class="countdown countdown--inline">
+          <span><strong id="days">00</strong>Days</span>
+          <span><strong id="hours">00</strong>Hours</span>
+          <span><strong id="minutes">00</strong>Minutes</span>
+          <span><strong id="seconds">00</strong>Seconds</span>
+        </div>
+      </div>
+    </section>
 
-    <main>
-      <section class="hero section">
-        <div class="hero__aura hero__aura--one"></div>
-        <div class="hero__aura hero__aura--two"></div>
-        <div class="hero__grid"></div>
-        <div class="hero__spotlight hero__spotlight--left"></div>
-        <div class="hero__spotlight hero__spotlight--right"></div>
+    <section class="chapter editorial" id="identity" aria-labelledby="identity-title">
+      <div class="editorial__copy reveal">
+        <h2 id="identity-title">Instinct becomes identity.</h2>
+        <p>The Vibe Canvas is built around original concepts, not borrowed trends. Each release starts with meaning, then moves through apparel, culture, and community.</p>
+      </div>
+      <figure class="campaign-frame campaign-frame--portrait reveal tilt">
+        <img src="assets/identity-wolf.webp" alt="Wolf identity artwork for The Vibe Canvas" width="1536" height="1024" loading="lazy" decoding="async">
+        <figcaption>Instinct. Identity. Originality.</figcaption>
+      </figure>
+    </section>
 
-        <div class="hero__content" data-depth="0.16">
-          <p class="eyebrow reveal">Luxury streetwear launch sequence</p>
-          <h1 class="hero__title reveal">
-            <span>LEVEL UP</span>
-            <span>YOUR FIT</span>
-          </h1>
-          <p class="hero__copy reveal">Where code meets culture. Built like a fashion campaign, released like a future memory.</p>
-          <p class="hero__discount reveal">Join the early access list and receive an exclusive 10% launch discount.</p>
-          <div class="countdown reveal" aria-label="Countdown to launch">
-            <div class="countdown__item">
-              <span class="countdown__value" id="days">00</span>
-              <span class="countdown__label">Days</span>
-            </div>
-            <div class="countdown__item">
-              <span class="countdown__value" id="hours">00</span>
-              <span class="countdown__label">Hours</span>
-            </div>
-            <div class="countdown__item">
-              <span class="countdown__value" id="minutes">00</span>
-              <span class="countdown__label">Minutes</span>
-            </div>
-            <div class="countdown__item">
-              <span class="countdown__value" id="seconds">00</span>
-              <span class="countdown__label">Seconds</span>
-            </div>
-          </div>
-          <div class="hero__actions reveal">
-            <a class="button button--primary magnetic" href="#waitlist">Join the Waitlist</a>
-            <button class="button button--ghost magnetic" type="button" data-scroll="#waitlist">Secure Early Access + 10% Launch Discount</button>
-          </div>
-        </div>
+    <section class="chapter craft" id="craft" aria-labelledby="craft-title">
+      <div class="craft__intro reveal">
+        <h2 id="craft-title">Discipline in construction.</h2>
+        <p>Premium material choices and engineered proportions create the standard: 240 GSM heavyweight cotton, oversized fit, and small-batch releases made with restraint.</p>
+      </div>
+      <div class="craft__media">
+        <figure class="campaign-frame reveal">
+          <img src="assets/craft-materials.webp" alt="Material engineering board for The Vibe Canvas apparel" width="1199" height="1312" loading="lazy" decoding="async">
+          <figcaption>Material engineering</figcaption>
+        </figure>
+        <figure class="campaign-frame reveal">
+          <img src="assets/craft-detail.webp" alt="Construction detail board for The Vibe Canvas apparel" width="1536" height="1024" loading="lazy" decoding="async">
+          <figcaption>Technology and discipline</figcaption>
+        </figure>
+      </div>
+      <div class="craft__standards reveal" aria-label="Craft standards">
+        <span>240 GSM cotton</span>
+        <span>Oversized engineered fit</span>
+        <span>Small-batch drops</span>
+      </div>
+    </section>
 
-        <div class="hero__visual" data-depth="0.08">
-          <div class="runway-scene reveal">
-            <div class="runway-scene__glow runway-scene__glow--one"></div>
-            <div class="runway-scene__glow runway-scene__glow--two"></div>
-            <div class="runway-scene__frame"></div>
-            <div class="runway-scene__lines">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div class="runway-scene__wave runway-scene__wave--one"></div>
-            <div class="runway-scene__wave runway-scene__wave--two"></div>
-            <div class="runway-scene__wave runway-scene__wave--three"></div>
-            <div class="runway-scene__crest">V/C</div>
-            <div class="floating-card floating-card--top glass reveal">
-              <span>Drop 01</span>
-              <strong>Neon-tailored streetcode</strong>
-            </div>
-            <div class="floating-card floating-card--bottom glass reveal">
-              <span>Early access</span>
-              <strong>10% off for first-drop members</strong>
-            </div>
-          </div>
-        </div>
+    <section class="chapter grid-story" id="grid" aria-labelledby="grid-title">
+      <picture class="grid-story__image reveal">
+        <img src="assets/grid-ecosystem.webp" alt="The Grid ecosystem artwork with architectural technology environment" width="1536" height="1024" loading="lazy" decoding="async">
+      </picture>
+      <div class="grid-signature" aria-hidden="true">
+        <img src="assets/the-vibe-canvas-logo.png" alt="" width="1280" height="1280">
+        <span>The Grid</span>
+      </div>
+      <div class="grid-story__copy reveal">
+        <h2 id="grid-title">The Grid is the culture ecosystem.</h2>
+        <p>The Grid is the member experience behind the brand: community, creator network, cultural layer, and future platform. Access, rewards, benefits, and opportunities follow from belonging.</p>
+      </div>
+    </section>
 
-        <div class="hero__marquee">
-          <span>Logo-led neon identity</span>
-          <span>Streetwear energy</span>
-          <span>Runway glow</span>
-          <span>Future memory</span>
-        </div>
-      </section>
+    <section class="chapter access" aria-labelledby="access-title">
+      <div class="access__copy reveal">
+        <h2 id="access-title">Access follows community.</h2>
+        <p>Join for first notice of limited releases, private launch updates, member benefits, and the early access discount sent before the official drop.</p>
+      </div>
+      <figure class="access__image campaign-frame reveal">
+        <img src="assets/access-campaign.webp" alt="The Vibe Canvas apparel campaign with wolf artwork" width="1607" height="979" loading="lazy" decoding="async">
+        <figcaption>Culture. Community. Evolution.</figcaption>
+      </figure>
+      <div class="access__touchpoints reveal">
+        <a href="https://www.instagram.com/thevibecanvas.in?igsh=MTNsbXp3bW9qYjk4dg==" target="_blank" rel="noopener noreferrer">
+          <span>Instagram</span>
+          <strong>@thevibecanvas.in</strong>
+        </a>
+        <a href="https://www.threads.com/@thevibecanvas.in" target="_blank" rel="noopener noreferrer">
+          <span>Threads</span>
+          <strong>@thevibecanvas.in</strong>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61587367756185" target="_blank" rel="noopener noreferrer">
+          <span>Facebook</span>
+          <strong>The Vibe Canvas</strong>
+        </a>
+      </div>
+    </section>
 
-      <section class="visual section" id="visual">
-        <div class="section-head reveal">
-          <p class="eyebrow">Immersive visual system</p>
-          <h2>Logo-inspired light, silhouette, and motion.</h2>
+    <section class="chapter waitlist" id="waitlist" aria-labelledby="waitlist-title">
+      <div class="waitlist__story reveal">
+        <h2 id="waitlist-title">Join the waitlist.</h2>
+        <p>The waitlist is the final step into early access for Drop 01, launch updates, community entry, and the 10% launch discount.</p>
+        <div class="countdown countdown--panel" aria-label="Official launch countdown">
+          <span><strong id="days-secondary">00</strong>Days</span>
+          <span><strong id="hours-secondary">00</strong>Hours</span>
+          <span><strong id="minutes-secondary">00</strong>Minutes</span>
+          <span><strong id="seconds-secondary">00</strong>Seconds</span>
         </div>
+      </div>
+      <div class="waitlist__form reveal" id="waitlist-form">
+        <div class="form-frame">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSeuSzZPVAT-eJm8e-eLRdTwQ8qXogeppa60GdrxvDjoHKj2Sw/viewform?embedded=true"
+            title="The Vibe Canvas waitlist form"
+            loading="lazy">
+          </iframe>
+        </div>
+        <p class="form-note">The form is powered by Google Forms. Submissions remain unchanged.</p>
+      </div>
+    </section>
+  </main>
 
-        <div class="visual__panel glass tilt reveal" data-depth="0.06">
-          <div class="visual__glow visual__glow--one"></div>
-          <div class="visual__glow visual__glow--two"></div>
-          <div class="visual__beam"></div>
-          <div class="visual__stack">
-            <div class="chip">Wolf-mark cyan glow</div>
-            <div class="chip">Magenta edge light</div>
-            <div class="chip">Editorial framing</div>
-          </div>
-          <div class="visual__columns">
-            <article class="visual-card">
-              <span>01</span>
-              <h3>Sharp line identity</h3>
-              <p>Bright cyan contours and violet accents echo the logo's luminous wolf-line energy.</p>
-            </article>
-            <article class="visual-card">
-              <span>02</span>
-              <h3>Runway composition</h3>
-              <p>Wide spacing, dramatic light, and campaign-style framing keep the page fashion-first.</p>
-            </article>
-            <article class="visual-card">
-              <span>03</span>
-              <h3>Fast premium motion</h3>
-              <p>Fluid GPU-friendly movement replaces heavier effects so the site feels smoother and more intentional.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="story section" id="story">
-        <div class="story__copy glass reveal">
-          <p class="eyebrow">Brand story</p>
-          <h2>A new wave of fashion. Built for the culture. Designed for the future.</h2>
-          <p>
-            The Vibe Canvas imagines fashion as an interface: coded with intention, charged with street energy,
-            and designed for creators who move before the world catches up.
-          </p>
-        </div>
-        <div class="story__rail">
-          <div class="story__point reveal">
-            <span>01</span>
-            <strong>A new wave of fashion</strong>
-          </div>
-          <div class="story__point reveal">
-            <span>02</span>
-            <strong>Built for the culture</strong>
-          </div>
-          <div class="story__point reveal">
-            <span>03</span>
-            <strong>Designed for the future</strong>
-          </div>
-        </div>
-      </section>
-
-      <section class="hype section" id="hype">
-        <div class="hype__line reveal">
-          <span>THE FUTURE OF STREETWEAR</span>
-        </div>
-        <div class="hype__line reveal">
-          <span>LEVEL UP YOUR FIT</span>
-        </div>
-        <div class="hype__line reveal">
-          <span>DROP 01 IS COMING</span>
-        </div>
-      </section>
-
-      <section class="waitlist section" id="waitlist">
-        <div class="waitlist__intro reveal">
-          <p class="eyebrow">Exclusive access</p>
-          <h2>Secure your place before the drop goes live.</h2>
-          <p>Join the waitlist for early access, private updates, first-look privileges, and an exclusive 10% launch discount.</p>
-          <div class="benefits-panel glass">
-            <p class="eyebrow">Early access benefits</p>
-            <h3>Join the waitlist today and receive a 10% discount code for the launch.</h3>
-            <ul class="benefits-list">
-              <li>Exclusive 10% launch discount</li>
-              <li>First access to Drop 01</li>
-              <li>Private launch announcement</li>
-              <li>Limited early inventory</li>
-            </ul>
-            <p class="benefits-note">The discount code will be sent 24 hours before the official launch using the preferred communication method selected in the form.</p>
-          </div>
-          <div class="discount-banner glass">
-            <span class="discount-banner__label">Early Access Members Receive 10% Off</span>
-            <p>The discount code will be sent 24 hours before launch using the preferred communication method selected in the form.</p>
-          </div>
-        </div>
-
-        <div class="waitlist__form glass reveal" id="waitlist-form">
-          <div class="waitlist__countdown">
-            <p class="eyebrow">Official launch countdown</p>
-            <div class="countdown countdown--compact" aria-label="Countdown to launch">
-              <div class="countdown__item">
-                <span class="countdown__value" id="days-secondary">00</span>
-                <span class="countdown__label">Days</span>
-              </div>
-              <div class="countdown__item">
-                <span class="countdown__value" id="hours-secondary">00</span>
-                <span class="countdown__label">Hours</span>
-              </div>
-              <div class="countdown__item">
-                <span class="countdown__value" id="minutes-secondary">00</span>
-                <span class="countdown__label">Minutes</span>
-              </div>
-              <div class="countdown__item">
-                <span class="countdown__value" id="seconds-secondary">00</span>
-                <span class="countdown__label">Seconds</span>
-              </div>
-            </div>
-          </div>
-          <div class="form-frame">
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSeuSzZPVAT-eJm8e-eLRdTwQ8qXogeppa60GdrxvDjoHKj2Sw/viewform?embedded=true"
-              title="The Vibe Canvas waitlist form"
-              loading="lazy">
-              Loading...
-            </iframe>
-          </div>
-          <p class="form-note">No spam. Just signals from the future.</p>
-        </div>
-      </section>
-
-      <section class="social section" aria-labelledby="social-heading">
-        <div class="social__inner glass reveal">
-          <div>
-            <p class="eyebrow">Stay in orbit</p>
-            <h2 id="social-heading">Follow the launch across every channel.</h2>
-          </div>
-          <div class="social__links">
-            <a class="social-link magnetic" href="https://www.instagram.com/thevibecanvas.in?igsh=MTNsbXp3bW9qYjk4dg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <span class="social-link__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2Zm10.35 1.65a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2.2A2.8 2.8 0 1 0 12 14.8 2.8 2.8 0 0 0 12 9.2Z"/></svg>
-              </span>
-              <span>Instagram</span>
-            </a>
-            <a class="social-link magnetic" href="https://www.threads.com/@thevibecanvas.in" target="_blank" rel="noopener noreferrer" aria-label="Threads">
-              <span class="social-link__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img"><path d="M16.45 10.2c-.15-2.63-1.67-4.1-4.3-4.1-2.86 0-4.7 1.73-4.7 4.4 0 2.47 1.52 4.18 3.82 4.18 1.28 0 2.35-.47 3.1-1.3.2.57.33 1.12.38 1.61.12 1.4-.58 2.31-2.22 2.31-1.2 0-2.07-.43-2.58-1.4l-1.98.98c.86 1.7 2.5 2.54 4.75 2.54 3.28 0 4.93-1.8 4.67-4.83-.07-.83-.25-1.75-.58-2.73 1.1-.52 1.77-1.43 1.77-2.61 0-1.69-1.33-2.91-3.13-3.05Zm-.27 3.12c-.37-.74-.83-1.47-1.42-2.12 1.04.08 1.63.56 1.63 1.3 0 .35-.08.6-.21.82ZM12.2 12.9c-1.07 0-1.78-.87-1.78-2.23 0-1.44.72-2.42 1.82-2.42 1.06 0 1.75.74 1.98 1.96-.7-.07-1.43 0-2.18.2l.34 1.86c.63-.17 1.23-.22 1.8-.18-.37.52-1.01.81-1.96.81Z"/></svg>
-              </span>
-              <span>Threads</span>
-            </a>
-            <a class="social-link magnetic" href="https://www.facebook.com/profile.php?id=61587367756185" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <span class="social-link__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img"><path d="M13.5 22v-8.2h2.77l.42-3.2H13.5V8.56c0-.93.27-1.56 1.61-1.56h1.72V4.14a20.8 20.8 0 0 0-2.5-.14c-2.47 0-4.16 1.48-4.16 4.22v2.38H7.4v3.2h2.77V22h3.33Z"/></svg>
-              </span>
-              <span>Facebook</span>
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <span>THE VIBE CANVAS</span>
-      <span>LEVEL UP YOUR FIT</span>
-    </footer>
-  </div>
+  <footer class="footer">
+    <img src="assets/the-vibe-canvas-logo.png" alt="The Vibe Canvas" width="1280" height="1280">
+    <div>
+      <span>The Vibe Canvas</span>
+      <a href="#waitlist">Join Waitlist</a>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
