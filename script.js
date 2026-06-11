@@ -35,7 +35,7 @@ function setText(node, value) {
 }
 
 function updateCountdown() {
-  const launchDate = new Date("2026-06-11T06:30:00Z").getTime();
+  const launchDate = new Date("2026-06-13T06:30:00Z").getTime();
   const distance = Math.max(0, launchDate - Date.now());
 
   const values = {
